@@ -175,22 +175,28 @@
 комплексные числа), выполните сложение и умножение созданных экземпляров. Проверьте корректность полученного 
 результата.'''
 
-# class Complex():
-#     def __init__(self, real, imag):
-#         self.r = real
-#         self.i = imag
-#     def get_complex(self):
-#         self.cmpl = f"({self.r}+{self.i}j)"
-#         return self.cmpl
-#     def __add__(self, other):
-#         return Complex(self.r + other.r, self.i + other.i)
-#     def __sub__(self, other):
-#         return Complex(self.r - other.r, self.i - other.i)
-#     def __str__(self):
-#         if self.i > 0:
-#             return f"Результат операции: {self.r}+{self.i}j"
-#         return f"Результат операции: {self.r}{self.i}j"
-# c1 = Complex(2, 4)
-# c2 = Complex(3, 5)
-# print(c1 + c2)
-# print(c1 - c2)
+class Complex():
+    def __init__(self, real, imag):
+        self.r = real
+        self.i = imag
+    def get_complex(self):
+        self.cmpl = f"({self.r}+{self.i}j)"
+        return self.cmpl
+    def __mul__(self, other):
+        r_mul = self.r * other.r - self.i * other.i
+        i_mul = self.i * other.r + self.r * other.i
+        return Complex(r_mul, i_mul)
+    def __add__(self, other):
+        return Complex(self.r + other.r, self.i + other.i)
+    def __sub__(self, other):
+        return Complex(self.r - other.r, self.i - other.i)
+    def __str__(self):
+        if self.i > 0:
+            return f"Результат операции:{self.r} + {self.i}j"
+        return f"Результат операции: {self.r}{self.i}j"
+# (a1a2 - b1b2) + (a1b1 + a2b1)j
+c1 = Complex(2, 4)
+c2 = Complex(3, 5)
+print(c1 + c2)
+print(c1 - c2)
+print(c1 * c2)
